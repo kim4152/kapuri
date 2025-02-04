@@ -29,9 +29,9 @@ kotlin {
             isStatic = true
         }
     }
-    
+    applyDefaultHierarchyTemplate()
     jvm("desktop")
-    
+
     @OptIn(ExperimentalWasmDsl::class)
     wasmJs {
         moduleName = "composeApp"
@@ -53,26 +53,54 @@ kotlin {
     }
     
     sourceSets {
-        val desktopMain by getting
-        
-        androidMain.dependencies {
-            implementation(compose.preview)
-            implementation(libs.androidx.activity.compose)
+        val commonMain by getting{
+            dependencies {
+                implementation(compose.runtime)
+                implementation(compose.foundation)
+                implementation(compose.material)
+                implementation(compose.ui)
+                implementation(compose.components.resources)
+                implementation(compose.components.uiToolingPreview)
+                implementation(libs.androidx.lifecycle.viewmodel)
+                implementation(libs.androidx.lifecycle.runtime.compose)
+                implementation(projects.shared)
+            }
         }
-        commonMain.dependencies {
-            implementation(compose.runtime)
-            implementation(compose.foundation)
-            implementation(compose.material)
-            implementation(compose.ui)
-            implementation(compose.components.resources)
-            implementation(compose.components.uiToolingPreview)
-            implementation(libs.androidx.lifecycle.viewmodel)
-            implementation(libs.androidx.lifecycle.runtime.compose)
-            implementation(projects.shared)
+        val nonAndroidMain by creating{
+            dependsOn(commonMain)
         }
-        desktopMain.dependencies {
-            implementation(compose.desktop.currentOs)
-            implementation(libs.kotlinx.coroutines.swing)
+        val commonTest by getting{
+            dependencies {
+                implementation(kotlin("test"))
+            }
+        }
+        val androidMain by getting {
+            dependencies {
+                implementation(compose.preview)
+                implementation(libs.androidx.activity.compose)
+            }
+        }
+        val androidUnitTest by getting {
+            dependencies {
+                implementation("junit:junit:4.13.2")
+            }
+        }
+
+        val desktopMain by getting{
+            dependsOn(nonAndroidMain)
+            dependencies {
+                implementation(compose.desktop.currentOs)
+                implementation(libs.kotlinx.coroutines.swing)
+            }
+        }
+        val iosMain by getting{
+            dependsOn(nonAndroidMain)
+        }
+        val wasmJsMain by getting{
+            dependsOn(nonAndroidMain)
+            dependencies {
+                implementation(kotlin("stdlib"))
+            }
         }
     }
 }
