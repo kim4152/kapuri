@@ -64,8 +64,8 @@ kotlin {
                 implementation(libs.androidx.lifecycle.viewmodel)
                 implementation(libs.androidx.lifecycle.runtime.compose)
                 implementation(projects.shared)
-
                 implementation(libs.navigation.compose)
+                implementation(libs.koin.core)
             }
         }
         val nonAndroidMain by creating{
@@ -80,6 +80,7 @@ kotlin {
             dependencies {
                 implementation(compose.preview)
                 implementation(libs.androidx.activity.compose)
+                implementation(libs.koin.android)
             }
         }
         val androidUnitTest by getting {
@@ -97,11 +98,15 @@ kotlin {
         }
         val iosMain by getting{
             dependsOn(nonAndroidMain)
+            dependencies {
+                implementation(libs.koin.core)
+            }
         }
         val wasmJsMain by getting{
             dependsOn(nonAndroidMain)
             dependencies {
                 implementation(kotlin("stdlib"))
+                implementation(libs.koin.core.js)
             }
         }
     }

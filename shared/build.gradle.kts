@@ -44,22 +44,22 @@ kotlin {
     sourceSets {
         androidMain.dependencies {
             implementation(libs.ktor.client.okhttp)
-            implementation("io.insert-koin:koin-android:3.5.0")
+            implementation(libs.koin.android)
         }
         commonMain.dependencies {
             implementation(libs.bundles.ktor)
-            implementation("io.insert-koin:koin-core:3.5.0")
+            implementation(libs.koin.core)
         }
         iosMain.dependencies {
             implementation(libs.ktor.client.darwin)
-            implementation("io.insert-koin:koin-core:3.5.0")
+            implementation(libs.koin.core)
         }
         jvmMain.dependencies {
             implementation(libs.ktor.client.okhttp)
         }
         wasmJsMain.dependencies {
             implementation(libs.ktor.client.js)
-            implementation("io.insert-koin:koin-core-js:3.5.0")
+            implementation(libs.koin.core.js)
 
         }
     }

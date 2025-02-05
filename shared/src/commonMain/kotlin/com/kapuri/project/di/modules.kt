@@ -14,10 +14,10 @@ val networkModule: Module = module {
 val kakaoDataSourceModule: Module = module {
     single { KakaoDataSource(get()) }
 }
-val KakaoRepositoryModule: Module = module{
-    single { KakaoRepository(get()) }
+val kakaoRepositoryModule: Module = module{
+    single { KakaoRepository() }
 }
 
 fun initKoin() = startKoin {
-    modules(networkModule, kakaoDataSourceModule, KakaoRepositoryModule)
+    modules(networkModule, kakaoDataSourceModule, kakaoRepositoryModule )
 }
