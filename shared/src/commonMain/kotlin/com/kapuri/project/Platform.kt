@@ -1,7 +1,0 @@
-package com.kapuri.project
-
-interface Platform {
-    val name: String
-}
-
-expect fun getPlatform(): Platform

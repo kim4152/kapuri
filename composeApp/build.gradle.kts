@@ -64,6 +64,8 @@ kotlin {
                 implementation(libs.androidx.lifecycle.viewmodel)
                 implementation(libs.androidx.lifecycle.runtime.compose)
                 implementation(projects.shared)
+
+                implementation(libs.navigation.compose)
             }
         }
         val nonAndroidMain by creating{

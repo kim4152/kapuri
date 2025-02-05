@@ -2,11 +2,12 @@ package com.kapuri.project
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import com.kapuri.project.ui.KapuriApp
 
 
 @Composable
 fun JetSnackAppEntryPoint() {
     CompositionLocalProvider {
-        App()
+        KapuriApp()
     }
 }
