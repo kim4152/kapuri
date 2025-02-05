@@ -1,4 +1,4 @@
-package com.kapuri.project.client
+package com.kapuri.project
 
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.HttpClientEngine
@@ -9,10 +9,6 @@ import io.ktor.client.plugins.logging.LogLevel
 import io.ktor.client.plugins.logging.Logging
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
-
-object NetworkClient{
-    val httpClient: HttpClient by lazy { createHttpClient(getEngine()) }
-}
 
 expect fun getEngine(): HttpClientEngine
 

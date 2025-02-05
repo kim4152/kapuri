@@ -22,6 +22,7 @@ kotlin {
     iosSimulatorArm64()
     
     jvm()
+    // jvm("desktop")
     
     @OptIn(ExperimentalWasmDsl::class)
     wasmJs {
@@ -43,19 +44,23 @@ kotlin {
     sourceSets {
         androidMain.dependencies {
             implementation(libs.ktor.client.okhttp)
+            implementation("io.insert-koin:koin-android:3.5.0")
         }
         commonMain.dependencies {
-            // put your Multiplatform dependencies here
             implementation(libs.bundles.ktor)
+            implementation("io.insert-koin:koin-core:3.5.0")
         }
         iosMain.dependencies {
             implementation(libs.ktor.client.darwin)
+            implementation("io.insert-koin:koin-core:3.5.0")
         }
         jvmMain.dependencies {
             implementation(libs.ktor.client.okhttp)
         }
         wasmJsMain.dependencies {
             implementation(libs.ktor.client.js)
+            implementation("io.insert-koin:koin-core-js:3.5.0")
+
         }
     }
 }

@@ -1,14 +1,11 @@
 package com.kapuri.project.repository
 
-interface KakaoRepository {
-    suspend fun signIn()
-}
+import com.kapuri.project.datasource.KakaoDataSource
 
-class KakaoRepositoryImpl(
-
-): KakaoRepository{
-    override suspend fun signIn() {
+class KakaoRepository(
+    kakaoDataSource: KakaoDataSource
+){
+    suspend fun signIn() {
 
     }
-
 }
